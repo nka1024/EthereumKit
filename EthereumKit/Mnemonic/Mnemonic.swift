@@ -40,6 +40,7 @@ public final class Mnemonic {
         }
         let password = mnemonic.joined(separator: " ").toData()
         let salt = ("mnemonic" + passphrase).toData()
-        return Crypto.PBKDF2SHA512(password, salt: salt)
+        return mnemonic.joined(separator: " ").toData()
+//        return Crypto.PBKDF2SHA512(password, salt: salt)
     }
 }
