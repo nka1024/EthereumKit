@@ -179,6 +179,9 @@ public final class JSONRPC {
             return wei
         }
         private func intToHex(i: Int) -> String {
+            if (i == 0) {
+                return "0x0"
+            }
             let hex = String(format:"%02X", i)
             let trim = hex.replacingOccurrences(of: "^0+", with: "", options: .regularExpression)
             return "0x\(trim)"
