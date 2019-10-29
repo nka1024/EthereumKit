@@ -154,15 +154,15 @@ public final class JSONRPC {
             txParams["to"] = to
             
             if let gas = gasLimit {
-                txParams["gas"] = gas
+                txParams["gas"] = intToHex(i: gas)
             }
             
             if let gasPrice = gasPrice {
-                txParams["gasPrice"] = gasPrice
+                txParams["gasPrice"] = intToHex(i: gasPrice)
             }
             
             if let value = value {
-                txParams["value"] = value
+                txParams["value"] = intToHex(i: value)
             }
             
             if let data = data {
@@ -177,6 +177,12 @@ public final class JSONRPC {
                 throw JSONRPCError.unexpectedTypeObject(resultObject)
             }
             return wei
+        }
+        private func intToHex(i: Int) -> String {
+            let hex = String(format:"%02X", i)
+            let trim = hex.replacingOccurrences(of: "^0+", with: "", options: .regularExpression)
+            return "0x\(trim)"
+            
         }
     }
     
